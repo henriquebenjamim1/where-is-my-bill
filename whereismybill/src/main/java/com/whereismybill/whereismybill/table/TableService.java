@@ -17,7 +17,16 @@ public class TableService {
         return repository.findAll();
     }
 
+    public TableEntity findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Table not found with id: " + id));
+    }
+
     public TableEntity save(TableEntity table) {
         return repository.save(table);
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }

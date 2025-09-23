@@ -17,7 +17,16 @@ public class WaiterService {
         return repository.findAll();
     }
 
+    public WaiterEntity findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Waiter not found with id: " + id));
+    }
+
     public WaiterEntity save(WaiterEntity waiter) {
         return repository.save(waiter);
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }

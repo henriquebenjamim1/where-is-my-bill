@@ -17,7 +17,16 @@ public class ProductService {
         return repository.findAll();
     }
 
+    public ProductEntity findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+    }
+
     public ProductEntity save(ProductEntity product) {
         return repository.save(product);
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }

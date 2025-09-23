@@ -1,11 +1,10 @@
 package com.whereismybill.whereismybill.product;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.whereismybill.whereismybill.order.OrderEntity;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 public class ProductEntity {
@@ -18,6 +17,12 @@ public class ProductEntity {
     private BigDecimal price;
     private Boolean action = true;
 
+    @ManyToMany(mappedBy = "products")
+    private List<OrderEntity> orders;
+
+    public ProductEntity() {
+    }
+
     public ProductEntity(String name, String description, BigDecimal price, Boolean action) {
         this.name = name;
         this.description = description;
@@ -29,9 +34,6 @@ public class ProductEntity {
         this.price = price;
         this.description = description;
         this.name = name;
-    }
-
-    public ProductEntity() {
     }
 
     public Long getId() {
@@ -68,5 +70,13 @@ public class ProductEntity {
 
     public void setAction(Boolean action) {
         this.action = action;
+    }
+
+    public List<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderEntity> orders) {
+        this.orders = orders;
     }
 }

@@ -1,9 +1,9 @@
 package com.whereismybill.whereismybill.waiter;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.whereismybill.whereismybill.table.TableEntity;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class WaiterEntity {
@@ -13,12 +13,23 @@ public class WaiterEntity {
     private String name;
     private String email;
 
+    @OneToMany(mappedBy = "waiter")
+    private List<TableEntity> tables;
+
     public WaiterEntity() {
     }
 
     public WaiterEntity(String name, String email) {
         this.name = name;
         this.email = email;
+    }
+
+    public List<TableEntity> getTables() {
+        return tables;
+    }
+
+    public void setTables(List<TableEntity> tables) {
+        this.tables = tables;
     }
 
     public Long getId() {
