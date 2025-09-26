@@ -1,11 +1,13 @@
 package com.whereismybill.whereismybill.product;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/products")
+@Tag(name = "Products" , description = "Domain to manage products")
 public class ProductController {
 
     private final ProductService service;
